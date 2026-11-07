@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Télécharger YILGA</title>
+<meta name="description" content="Téléchargez les applications Android YILGA (clients) et Yilga Pro (prestataires).">
+<link rel="icon" href="logo.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  :root{--orange:#FF4400;--orange-fonce:#E03A00;--orange-pale:#FFEDD5;--encre:#0F172A;--gris:#475569;--gris-clair:#94A3B8;--bord:#E2E8F0;--fond:#F8F6F5;--blanc:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--fond);color:var(--encre);font-family:'Inter',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  main{max-width:760px;margin:0 auto;padding:40px 16px 56px}
+  .marque{display:flex;align-items:center;gap:12px;margin-bottom:36px}
+  .marque img{width:44px;height:44px;border-radius:10px}
+  .marque span{font-weight:800;letter-spacing:.14em;font-size:20px}
+  h1{font-size:30px;line-height:1.2;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
+  .sous{color:var(--gris);font-size:16px;margin-bottom:28px}
+  .cartes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:600px){.cartes{grid-template-columns:1fr}}
+  .carte{background:var(--blanc);border:1px solid var(--bord);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px}
+  .carte .etiquette{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+  .carte h2{font-size:22px;font-weight:800;letter-spacing:.06em}
+  .carte h2 em{font-style:normal;font-weight:600;opacity:.8}
+  .carte p{color:var(--gris);font-size:15px;flex:1}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;font-size:16px;padding:14px 18px;border-radius:14px}
+  .btn:hover{background:var(--orange-fonce)}
+  .btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .meta{font-size:13px;color:var(--gris-clair);text-align:center}
+  .carte.pro{background:var(--encre);color:#fff;border-color:var(--encre)}
+  .carte.pro p{color:#CBD5E1}
+  .carte.pro .meta{color:#94A3B8}
+  section{margin-top:40px}
+  h3{font-size:18px;font-weight:800;margin-bottom:14px}
+  ol{list-style:none;display:grid;gap:12px}
+  ol li{display:flex;gap:14px;align-items:flex-start;color:var(--gris);font-size:15px}
+  ol li b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--orange-pale);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+  ol li strong{color:var(--encre);font-weight:600}
+  .note{margin-top:28px;background:var(--blanc);border:1px solid var(--bord);border-radius:14px;padding:16px 18px;font-size:14px;color:var(--gris)}
+  footer{margin-top:48px;font-size:13px;color:var(--gris-clair);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<main>
+  <div class="marque"><img src="logo.png" alt=""><span>YILGA</span></div>
+
+  <h1>Téléchargez les applications YILGA</h1>
+  <p class="sous">Version d'essai pour Android, installée directement depuis ce site (fichier APK). Les applications ne sont pas encore sur Google Play.</p>
+
+  <div class="cartes">
+    <article class="carte">
+      <span class="etiquette">Pour les clients</span>
+      <h2>YILGA</h2>
+      <p>Faites livrer un colis ou réservez un ménage à prix fixe, suivez votre commande et payez par Orange Money ou Moov Money.</p>
+      <a class="btn" href="https://github.com/HamdanCoder/yilga-apk/releases/latest/download/yilga-client.apk">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        Télécharger YILGA
+      </a>
+      <span class="meta">APK · 98 Mo · version du 22 octobre 2026</span>
+    </article>
+
+    <article class="carte pro">
+      <span class="etiquette">Pour les prestataires</span>
+      <h2>YILGA <em>Pro</em></h2>
+      <p>Recevez des courses près de vous, acceptez en deux appuis et retirez vos gains sur Mobile Money.</p>
+      <a class="btn" href="https://github.com/HamdanCoder/yilga-apk/releases/latest/download/yilga-pro.apk">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        Télécharger Yilga Pro
+      </a>
+      <span class="meta">APK · 95 Mo · version du 22 octobre 2026</span>
+    </article>
+  </div>
+
+  <section>
+    <h3>Installer sur votre téléphone</h3>
+    <ol>
+      <li><b>1</b><span><strong>Téléchargez</strong> l'application depuis ce site, sur le téléphone Android où vous voulez l'installer.</span></li>
+      <li><b>2</b><span><strong>Ouvrez le fichier</strong> depuis la notification de téléchargement ou l'application Fichiers.</span></li>
+      <li><b>3</b><span><strong>Autorisez l'installation</strong> si Android vous le demande : « Autoriser cette source » pour votre navigateur, puis revenez en arrière.</span></li>
+      <li><b>4</b><span><strong>Appuyez sur Installer</strong>, puis ouvrez l'application.</span></li>
+    </ol>
+    <div class="note">Si une version plus ancienne de YILGA est déjà installée, l'installation la remplace et conserve votre connexion. Android 8 ou plus récent. iPhone non disponible pour le moment.</div>
+  </section>
+
+  <footer><span>YILGA · Services à domicile</span><span>Android uniquement</span></footer>
+</main>
+</body>
+</html>
