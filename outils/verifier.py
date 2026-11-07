@@ -269,6 +269,52 @@ def verifier_guide(nom, html, p):
     return e
 
 
+def dimensions_png(chemin):
+    with open(chemin, "rb") as f:
+        en_tete = f.read(24)
+    if en_tete[:8] != b"\x89PNG\r\n\x1a\n":
+        return None
+    return int.from_bytes(en_tete[16:20], "big"), int.from_bytes(en_tete[20:24], "big")
+
+
+def verifier_finitions(nom, html, p):
+    e = []
+    icones = [(r, h) for r, h, _ in p.links if r in ("icon", "apple-touch-icon")]
+    if ("icon", "assets/img/favicon.svg") not in icones:
+        e.append(("finitions", "favicon.svg absent"))
+    if not any(r == "apple-touch-icon" for r, _ in icones):
+        e.append(("finitions", "apple-touch-icon absent"))
+    if p.metas.get("theme-color") != "#F8F6F5":
+        e.append(("finitions", "theme-color attendu #F8F6F5"))
+    if nom != "404.html":
+        if p.metas.get("og:image") != BASE_URL + "assets/img/og.png":
+            e.append(("finitions", "og:image doit être assets/img/og.png"))
+        if p.metas.get("og:image:width") != "1200" or p.metas.get("og:image:height") != "630":
+            e.append(("finitions", "og:image:width/height 1200×630 attendus"))
+        if p.metas.get("twitter:card") != "summary_large_image":
+            e.append(("finitions", "twitter:card summary_large_image attendu"))
+    return e
+
+
+def verifier_images_site():
+    e = []
+    og = os.path.join(RACINE, "assets", "img", "og.png")
+    if not os.path.exists(og):
+        e.append(("finitions", "assets/img/og.png absent"))
+    else:
+        if os.path.getsize(og) > 300_000:
+            e.append(("finitions", f"og.png pèse {os.path.getsize(og)//1000} Ko (max 300)"))
+        if dimensions_png(og) != (1200, 630):
+            e.append(("finitions", f"og.png fait {dimensions_png(og)} (attendu 1200×630)"))
+    if not os.path.exists(os.path.join(RACINE, "404.html")):
+        e.append(("finitions", "404.html absent"))
+    else:
+        q = analyser(lire(os.path.join(RACINE, "404.html")))
+        if not q.nav_entete or "index.html" not in q.hrefs:
+            e.append(("finitions", "404.html doit porter l'en-tête et un lien vers index.html"))
+    return e
+
+
 def verifier_poids(html, p):
     total = 0
     vus = set()
@@ -336,11 +382,15 @@ def main(argv):
             echecs_page += verifier_accueil(html, p) + verifier_poids(html, p)
         if nom.startswith("guide-"):
             echecs_page += verifier_guide(nom, html, p)
+        echecs_page += verifier_finitions(nom, html, p)
         for regle, detail in echecs_page:
             print(f"{nom}: {regle}: {detail}")
             echecs += 1
     for regle, detail in verifier_css():
         print(f"assets/site.css: {regle}: {detail}")
+        echecs += 1
+    for regle, detail in verifier_images_site():
+        print(f"site: {regle}: {detail}")
         echecs += 1
     for regle, detail in verifier_captures():
         print(f"assets/img/captures: {regle}: {detail}")
