@@ -15,6 +15,10 @@ from html.parser import HTMLParser
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_URL = "https://hamdancoder.github.io/yilga/"
 PAGES_NAV = ["index.html", "guide-client.html", "guide-prestataire.html", "telecharger.html"]
+CAPTURES = ["client-code-secret", "client-telephone", "client-accueil", "client-recharge", "client-ussd",
+            "client-commande", "client-menage", "client-carte", "client-suivi", "client-recu", "client-portefeuille",
+            "pro-documents", "pro-activation", "pro-accueil", "pro-demande", "pro-course", "pro-portefeuille",
+            "pro-retrait", "pro-retrait-agent", "pro-statistiques"]
 INTERDITS = ["yilga-apk", "à compléter", "30 minutes", "todo", "lorem", "download", "http://"]
 
 
@@ -216,6 +220,19 @@ def verifier_css():
     return e
 
 
+def verifier_captures():
+    e = []
+    dossier = os.path.join(RACINE, "assets", "img", "captures")
+    for nom in CAPTURES:
+        for largeur, maxi in ((540, 120_000), (1080, 350_000)):
+            chemin = os.path.join(dossier, f"{nom}-{largeur}.webp")
+            if not os.path.exists(chemin):
+                e.append(("captures", f"{nom}-{largeur}.webp absent"))
+            elif os.path.getsize(chemin) > maxi:
+                e.append(("captures", f"{nom}-{largeur}.webp pèse {os.path.getsize(chemin)//1000} Ko (max {maxi//1000})"))
+    return e
+
+
 def main(argv):
     options = {"reseau": "--reseau" in argv, "tout": "--tout" in argv}
     echecs = 0
@@ -231,6 +248,9 @@ def main(argv):
             echecs += 1
     for regle, detail in verifier_css():
         print(f"assets/site.css: {regle}: {detail}")
+        echecs += 1
+    for regle, detail in verifier_captures():
+        print(f"assets/img/captures: {regle}: {detail}")
         echecs += 1
     print(f"{pages} page(s), {echecs} échec(s)")
     return 1 if echecs else 0
