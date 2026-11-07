@@ -3,7 +3,7 @@
 :root{
   --orange:#FF4400; --orange-fonce:#E03A00; --orange-pale:#FFEDD5; --orange-texte:#C83600;
   --encre:#0F172A; --gris:#475569; --gris-clair:#94A3B8; --bord:#E2E8F0;
-  --fond:#F8F6F5; --beige:#F6EEE6; --blanc:#FFFFFF;
+  --fond:#F8F6F5; --beige:#F6EEE6; --blanc:#FFFFFF; --texte-sombre:#CBD5E1; --orange-sombre:#FFB38A;
   --entete:64px; --gouttiere:20px; --section:64px; --rayon:20px;
   --phone-largeur:240px;
   --ombre-carte:0 1px 2px rgba(15,23,42,.04),0 12px 32px -16px rgba(15,23,42,.18);
@@ -99,8 +99,8 @@ h3{font-size:19px;letter-spacing:-.01em;line-height:1.3}
 .carte{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--rayon);padding:24px;box-shadow:var(--ombre-carte);transition:transform .15s ease,box-shadow .15s ease}
 @media (min-width:760px){.carte{padding:28px}}
 .carte--sombre{background:var(--encre);color:var(--blanc);border-color:var(--encre)}
-.carte--sombre .carte__texte{color:#CBD5E1}
-.carte--sombre .carte__etiquette{color:#FFB38A}
+.carte--sombre .carte__texte{color:var(--texte-sombre)}
+.carte--sombre .carte__etiquette{color:var(--orange-sombre)}
 .carte__etiquette{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-texte);margin-bottom:10px}
 .carte__texte{color:var(--gris);margin-top:8px}
 
@@ -210,12 +210,12 @@ h3{font-size:19px;letter-spacing:-.01em;line-height:1.3}
 .etape p strong{display:block;color:var(--encre);font-weight:700;margin-bottom:2px}
 .parcours__colonne .lien{display:inline-block;margin-top:18px}
 .pro__grille{display:grid;gap:36px}
-.pro .section__surtitre{color:#FFB38A}
-.pro .section__intro{color:#CBD5E1}
+.pro .section__surtitre{color:var(--orange-sombre)}
+.pro .section__intro{color:var(--texte-sombre)}
 .pro__args{display:grid;gap:16px;margin-top:28px}
-.pro__arg{display:flex;gap:14px;align-items:flex-start;color:#CBD5E1}
+.pro__arg{display:flex;gap:14px;align-items:flex-start;color:var(--texte-sombre)}
 .pro__arg strong{display:block;color:var(--blanc);font-weight:700}
-.pro__arg .ico{background:rgba(255,68,0,.18);color:#FFB38A}
+.pro__arg .ico{background:rgba(255,68,0,.18);color:var(--orange-sombre)}
 .pro__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .pro__scene{width:var(--phone-largeur);margin:0 auto}
 @media (min-width:760px){
