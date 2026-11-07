@@ -23,9 +23,13 @@ else
   (cd "$ICI" && git push -q origin main)
 fi
 
+if gh release view "$TAG" --repo "$DEPOT" >/dev/null 2>&1; then
+  echo "→ release $TAG déjà publiée"
+else
 echo "→ release $TAG"
 gh release create "$TAG" "$TMP/yilga-client.apk" "$TMP/yilga-pro.apk" --repo "$DEPOT" \
   --title "Version du ${TAG#v}" --notes "APK Android signés avec la clé de développement, backend https://api-v2.yilga.ci-hamdan.cloud."
+fi
 
 echo "→ vérification des liens"
 for n in yilga-client yilga-pro; do
@@ -33,6 +37,6 @@ for n in yilga-client yilga-pro; do
     "https://github.com/$DEPOT/releases/latest/download/$n.apk"
 done
 echo
-echo "Page    : https://hamdancoder.github.io/yilga/   (en ligne 1 à 2 minutes après la première publication)"
+echo "Site    : https://hamdancoder.github.io/yilga/   (reconstruit en 1 à 2 minutes)"
 echo "YILGA   : https://github.com/$DEPOT/releases/latest/download/yilga-client.apk"
 echo "Yilga Pro : https://github.com/$DEPOT/releases/latest/download/yilga-pro.apk"
