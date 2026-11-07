@@ -1,9 +1,10 @@
 # Site web YILGA — conception
 
 Date : 2026-11-07.
-Dépôt : `~/IdeaProjects/yilga-v2/site` (dépôt git local, ex-`telechargement`, à publier en dépôt public
-`HamdanCoder/yilga` servi par GitHub Pages sur `https://hamdancoder.github.io/yilga/`).
-Statut : à valider avant plan d'implémentation.
+Dépôt : `~/IdeaProjects/yilga-v2/site`, dépôt public `HamdanCoder/yilga` (renommé depuis `yilga-apk` le
+2026-11-07, GitHub redirige l'ancien nom), servi par GitHub Pages sur `https://hamdancoder.github.io/yilga/`.
+La release `v2026.10.22` avec les deux APK y est déjà publiée.
+Statut : validé par le fondateur le 2026-11-07.
 
 ## 1. Intention
 
@@ -202,10 +203,14 @@ converties en WebP (qualité 85, deux tailles : 540 px et 1080 px de large). Exi
 
 - **Fichiers** : `index.html`, `guide-client.html`, `guide-prestataire.html`, `telecharger.html`,
   `404.html`, `assets/site.css`, `assets/site.js`, `assets/img/` (logo, favicons, Open Graph,
-  captures WebP), `.nojekyll`. Un seul CSS, un seul JS (sans dépendance), chargés une fois.
+  captures WebP), `_config.yml`. Un seul CSS, un seul JS (sans dépendance), chargés une fois.
 - **Hébergement** : GitHub Pages, branche `main`, racine. Tous les liens internes relatifs pour que le
-  site fonctionne sous `/yilga/` comme sous un futur domaine. Un `CNAME` pourra être ajouté plus tard sans
-  rien changer d'autre.
+  site fonctionne sous `/yilga/` comme sous un futur domaine ; seules l'image Open Graph et l'URL
+  canonique sont absolues (`https://hamdancoder.github.io/yilga/…`), définies une fois en tête de chaque
+  page. Un `CNAME` pourra être ajouté plus tard sans rien changer d'autre.
+- **Ce qui n'est pas servi** : `docs/` (conception et plans), `publier.sh` et `README.md` restent dans
+  le dépôt, visibles sur GitHub (rien de confidentiel : descriptions du produit déjà visibles dans les
+  apps), mais exclus du site publié par un `_config.yml` Jekyll (`exclude:`) ; pas de `.nojekyll`.
 - **APK** : releases du dépôt `HamdanCoder/yilga` ; `publier.sh` (existant) mis à jour pour ce dépôt et
   ce dossier.
 - **Performance** : page d'accueil sous 1,5 Mo transférés sur téléphone (captures en WebP, chargement

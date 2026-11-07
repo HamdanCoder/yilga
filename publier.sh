@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Publie la page de téléchargement et les APK sur GitHub (dépôt public HamdanCoder/yilga-apk).
+# Publie la page de téléchargement et les APK sur GitHub (dépôt public HamdanCoder/yilga).
 #   publier.sh                      # première publication : crée le dépôt, la release, la page
 #   publier.sh v2026.11.20 client.apk pro.apk   # nouvelle version : ajoute une release
 set -euo pipefail
-DEPOT=HamdanCoder/yilga-apk
+DEPOT=HamdanCoder/yilga
 ICI="$(cd "$(dirname "$0")" && pwd)"
 APK="$ICI/../apk"
 TAG="${1:-v2026.10.22}"
@@ -33,6 +33,6 @@ for n in yilga-client yilga-pro; do
     "https://github.com/$DEPOT/releases/latest/download/$n.apk"
 done
 echo
-echo "Page    : https://hamdancoder.github.io/yilga-apk/   (en ligne 1 à 2 minutes après la première publication)"
+echo "Page    : https://hamdancoder.github.io/yilga/   (en ligne 1 à 2 minutes après la première publication)"
 echo "YILGA   : https://github.com/$DEPOT/releases/latest/download/yilga-client.apk"
 echo "Yilga Pro : https://github.com/$DEPOT/releases/latest/download/yilga-pro.apk"
