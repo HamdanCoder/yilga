@@ -1,0 +1,6 @@
+exclude:
+  - docs
+  - outils
+  - publier.sh
+  - README.md
+  - .gitignore
