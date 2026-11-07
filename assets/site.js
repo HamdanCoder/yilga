@@ -44,3 +44,21 @@ const EMAIL_YILGA = '';       // ex. « contact@yilga.bf » ; vide = non affich�
     sections.forEach((s) => s.classList.add('reveal--vu'));
   }
 })();
+
+/* Parallaxe légère des téléphones de l'accroche, ordinateur seulement. */
+(function () {
+  const scene = document.querySelector('.hero__scene');
+  if (!scene) return;
+  const grand = window.matchMedia('(min-width:1040px)');
+  const reduit = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const phones = scene.querySelectorAll('.phone');
+  let demande = false;
+  const appliquer = () => {
+    demande = false;
+    if (!grand.matches || reduit.matches) { phones.forEach((p) => { p.style.translate = ''; }); return; }
+    const y = Math.min(window.scrollY, 600) / 600 * 24;
+    phones.forEach((p, i) => { p.style.translate = `0 ${i === 0 ? -y : y * 0.6}px`; });
+  };
+  window.addEventListener('scroll', () => { if (!demande) { demande = true; requestAnimationFrame(appliquer); } }, { passive: true });
+  appliquer();
+})();

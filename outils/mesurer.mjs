@@ -74,6 +74,8 @@ if (sansJs) await envoyer('Emulation.setScriptExecutionDisabled', { value: true 
 await envoyer('Emulation.setDeviceMetricsOverride', { width: +largeur, height: +hauteur, deviceScaleFactor: 1, mobile: +largeur < 760 }, sessionId);
 await envoyer('Page.navigate', { url: `http://127.0.0.1:${PORT}/${page}` }, sessionId);
 await attendre('Page.loadEventFired');
+// Sans script : la page est rendue sans JS ; on réactive l'exécution après le chargement, uniquement pour mesurer.
+if (sansJs) await envoyer('Emulation.setScriptExecutionDisabled', { value: false }, sessionId);
 await envoyer('Runtime.evaluate', { expression: 'document.fonts.ready', awaitPromise: true }, sessionId);
 const rep = await envoyer('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true }, sessionId);
 if (rep.result.exceptionDetails) console.error(rep.result.exceptionDetails.text, rep.result.exceptionDetails.exception?.description ?? '');
@@ -81,7 +83,7 @@ else console.log(typeof rep.result.result.value === 'object' ? JSON.stringify(re
 if (png) {
   const h = (await envoyer('Runtime.evaluate', { expression: 'document.documentElement.scrollHeight', returnByValue: true }, sessionId)).result.result.value;
   await envoyer('Emulation.setDeviceMetricsOverride', { width: +largeur, height: h, deviceScaleFactor: 2, mobile: +largeur < 760 }, sessionId);
-  await envoyer('Runtime.evaluate', { expression: 'document.querySelectorAll(".reveal").forEach(s => s.classList.add("reveal--vu")); new Promise(r => setTimeout(r, 400))', awaitPromise: true }, sessionId);
+  if (!sansJs) await envoyer('Runtime.evaluate', { expression: 'document.querySelectorAll(".reveal").forEach(s => s.classList.add("reveal--vu")); new Promise(r => setTimeout(r, 400))', awaitPromise: true }, sessionId);
   const cap = await envoyer('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true }, sessionId);
   writeFileSync(png, Buffer.from(cap.result.data, 'base64'));
   console.error(`${png} (${largeur}×${h})`);

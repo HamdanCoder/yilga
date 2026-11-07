@@ -3,87 +3,208 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Télécharger YILGA</title>
-<meta name="description" content="Téléchargez les applications Android YILGA (clients) et Yilga Pro (prestataires).">
-<link rel="icon" href="logo.png">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-  :root{--orange:#FF4400;--orange-fonce:#E03A00;--orange-pale:#FFEDD5;--encre:#0F172A;--gris:#475569;--gris-clair:#94A3B8;--bord:#E2E8F0;--fond:#F8F6F5;--blanc:#fff}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--fond);color:var(--encre);font-family:'Inter',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
-  main{max-width:760px;margin:0 auto;padding:40px 16px 56px}
-  .marque{display:flex;align-items:center;gap:12px;margin-bottom:36px}
-  .marque img{width:44px;height:44px;border-radius:10px}
-  .marque span{font-weight:800;letter-spacing:.14em;font-size:20px}
-  h1{font-size:30px;line-height:1.2;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
-  .sous{color:var(--gris);font-size:16px;margin-bottom:28px}
-  .cartes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media (max-width:600px){.cartes{grid-template-columns:1fr}}
-  .carte{background:var(--blanc);border:1px solid var(--bord);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px}
-  .carte .etiquette{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
-  .carte h2{font-size:22px;font-weight:800;letter-spacing:.06em}
-  .carte h2 em{font-style:normal;font-weight:600;opacity:.8}
-  .carte p{color:var(--gris);font-size:15px;flex:1}
-  .btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;font-size:16px;padding:14px 18px;border-radius:14px}
-  .btn:hover{background:var(--orange-fonce)}
-  .btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-  .meta{font-size:13px;color:var(--gris-clair);text-align:center}
-  .carte.pro{background:var(--encre);color:#fff;border-color:var(--encre)}
-  .carte.pro p{color:#CBD5E1}
-  .carte.pro .meta{color:#94A3B8}
-  section{margin-top:40px}
-  h3{font-size:18px;font-weight:800;margin-bottom:14px}
-  ol{list-style:none;display:grid;gap:12px}
-  ol li{display:flex;gap:14px;align-items:flex-start;color:var(--gris);font-size:15px}
-  ol li b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--orange-pale);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
-  ol li strong{color:var(--encre);font-weight:600}
-  .note{margin-top:28px;background:var(--blanc);border:1px solid var(--bord);border-radius:14px;padding:16px 18px;font-size:14px;color:var(--gris)}
-  footer{margin-top:48px;font-size:13px;color:var(--gris-clair);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-</style>
+<title>YILGA · Livraison et ménage à Ouagadougou</title>
+<meta name="description" content="Livraison de colis et ménage à prix fixe à Ouagadougou, par des prestataires vérifiés. Vous payez quand c'est fait, en espèces ou par Mobile Money.">
+<link rel="canonical" href="https://hamdancoder.github.io/yilga/">
+<meta property="og:title" content="YILGA · Livraison et ménage à Ouagadougou">
+<meta property="og:description" content="Prix connu avant de commander, prestataires vérifiés, paiement une fois la prestation faite. L'app Android des services à domicile.">
+<meta property="og:image" content="https://hamdancoder.github.io/yilga/assets/img/logo.png">
+<meta property="og:url" content="https://hamdancoder.github.io/yilga/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F8F6F5">
+<link rel="icon" href="assets/img/logo.png">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<header class="entete">
+  <nav class="entete__nav conteneur" aria-label="Navigation principale">
+    <a class="marque" href="index.html" aria-current="page"><img src="assets/img/logo.png" alt="" width="32" height="32">YILGA</a>
+    <button class="entete__menu" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="entete__liens" id="menu">
+      <li><a href="index.html#philosophie">Philosophie</a></li>
+      <li><a href="guide-client.html">Guide</a></li>
+      <li><a href="guide-prestataire.html">Prestataires</a></li>
+      <li><a class="bouton" href="telecharger.html">Télécharger</a></li>
+    </ul>
+  </nav>
+</header>
+
 <main>
-  <div class="marque"><img src="logo.png" alt=""><span>YILGA</span></div>
-
-  <h1>Téléchargez les applications YILGA</h1>
-  <p class="sous">Version d'essai pour Android, installée directement depuis ce site (fichier APK). Les applications ne sont pas encore sur Google Play.</p>
-
-  <div class="cartes">
-    <article class="carte">
-      <span class="etiquette">Pour les clients</span>
-      <h2>YILGA</h2>
-      <p>Faites livrer un colis ou réservez un ménage à prix fixe, suivez votre commande et payez par Orange Money ou Moov Money.</p>
-      <a class="btn" href="https://github.com/HamdanCoder/yilga/releases/latest/download/yilga-client.apk">
-        <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        Télécharger YILGA
-      </a>
-      <span class="meta">APK · 98 Mo · version du 22 octobre 2026</span>
-    </article>
-
-    <article class="carte pro">
-      <span class="etiquette">Pour les prestataires</span>
-      <h2>YILGA <em>Pro</em></h2>
-      <p>Recevez des courses près de vous, acceptez en deux appuis et retirez vos gains sur Mobile Money.</p>
-      <a class="btn" href="https://github.com/HamdanCoder/yilga/releases/latest/download/yilga-pro.apk">
-        <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        Télécharger Yilga Pro
-      </a>
-      <span class="meta">APK · 95 Mo · version du 22 octobre 2026</span>
-    </article>
-  </div>
-
-  <section>
-    <h3>Installer sur votre téléphone</h3>
-    <ol>
-      <li><b>1</b><span><strong>Téléchargez</strong> l'application depuis ce site, sur le téléphone Android où vous voulez l'installer.</span></li>
-      <li><b>2</b><span><strong>Ouvrez le fichier</strong> depuis la notification de téléchargement ou l'application Fichiers.</span></li>
-      <li><b>3</b><span><strong>Autorisez l'installation</strong> si Android vous le demande : « Autoriser cette source » pour votre navigateur, puis revenez en arrière.</span></li>
-      <li><b>4</b><span><strong>Appuyez sur Installer</strong>, puis ouvrez l'application.</span></li>
-    </ol>
-    <div class="note">Si une version plus ancienne de YILGA est déjà installée, l'installation la remplace et conserve votre connexion. Android 8 ou plus récent. iPhone non disponible pour le moment.</div>
+  <section class="hero studio" id="haut">
+    <div class="conteneur hero__grille">
+      <div class="hero__texte">
+        <span class="section__surtitre">Services à domicile · Ouagadougou</span>
+        <h1>Faites livrer.<br>Faites nettoyer.<br><b>En toute confiance.</b></h1>
+        <p class="hero__sous">Livraison de colis et ménage à prix fixe, par des prestataires vérifiés. Vous payez quand c'est fait, en espèces ou par Mobile Money.</p>
+        <div class="hero__actions">
+          <a class="bouton" href="telecharger.html">Télécharger l'application</a>
+          <a class="lien" href="guide-client.html">Voir le guide</a>
+        </div>
+      </div>
+      <div class="hero__scene scene" aria-hidden="true">
+        <div class="phone tilt-r p2"><div class="screen"><img src="assets/img/captures/client-suivi-540.webp" srcset="assets/img/captures/client-suivi-540.webp 540w, assets/img/captures/client-suivi-1080.webp 1080w" sizes="(min-width:1040px) 300px, 240px" width="540" height="1200" alt="Suivi d'une livraison terminée dans l'app YILGA" fetchpriority="high"><i class="island"></i></div><b class="l1"></b><b class="l2"></b><b class="l3"></b><b class="r1"></b></div>
+        <div class="phone tilt-l p1"><div class="screen"><img src="assets/img/captures/client-accueil-540.webp" srcset="assets/img/captures/client-accueil-540.webp 540w, assets/img/captures/client-accueil-1080.webp 1080w" sizes="(min-width:1040px) 300px, 240px" width="540" height="1200" alt="Accueil de l'app YILGA avec le solde et les services" fetchpriority="high"><i class="island"></i></div><b class="l1"></b><b class="l2"></b><b class="l3"></b><b class="r1"></b></div>
+      </div>
+    </div>
   </section>
 
-  <footer><span>YILGA · Services à domicile</span><span>Android uniquement</span></footer>
+  <section class="section reveal" id="pourquoi">
+    <div class="conteneur">
+      <span class="section__surtitre">Pourquoi YILGA</span>
+      <h2 class="section__titre">Le gré à gré ne protège personne.</h2>
+      <p class="section__intro">À Ouagadougou, une livraison ou un ménage se négocie de bouche à oreille, sans garantie et sans recours.</p>
+      <div class="constats">
+        <div class="constat"><h3>Vous</h3><p>Vous craignez la surfacturation, et le travail qui ne sera pas fait comme convenu.</p></div>
+        <div class="constat"><h3>Celui qui vient</h3><p>Il craint le déplacement pour rien, et de ne pas être payé une fois le travail terminé.</p></div>
+        <div class="constat"><h3>En cas de désaccord</h3><p>Personne n'arbitre, et personne ne garde la trace de qui a bien travaillé.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="philosophie" style="background:var(--blanc)">
+    <div class="conteneur">
+      <span class="section__surtitre">Notre philosophie</span>
+      <h2 class="section__titre">La confiance est une fonctionnalité.</h2>
+      <p class="section__intro">YILGA ne vous demande pas de faire confiance. Elle la construit, avec quatre règles inscrites dans l'application.</p>
+      <div class="piliers">
+        <div class="pilier">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div>
+          <div><h3>Le prix avant la commande.</h3><p>Le ménage est au tarif fixé par YILGA, la livraison à un prix affiché avant de confirmer. Rien ne change entre la commande et la fin.</p></div>
+        </div>
+        <div class="pilier">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.4 3.4 8.2 8 9 4.6-.8 8-4.6 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <div><h3>Payé seulement quand c'est fait.</h3><p>Avec le portefeuille, l'argent est réservé à l'acceptation et débité après la prestation, une fois passé le délai pour contester. En cas de désaccord, une personne de YILGA tranche.</p></div>
+        </div>
+        <div class="pilier">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="m15 11 1.5 1.5L20 9"/></svg></div>
+          <div><h3>Des prestataires vérifiés.</h3><p>Pièce d'identité et documents contrôlés par YILGA avant la première course. Chaque course est ensuite notée par le client.</p></div>
+        </div>
+        <div class="pilier">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 15h2"/></svg></div>
+          <div><h3>Payé vite, sans surprise.</h3><p>Le prestataire voit ses gains en temps réel et les retire par versement Mobile Money ou en espèces chez un agent YILGA. Un bonus de départ lui permet de prendre ses premières courses en espèces sans avancer d'argent.</p></div>
+        </div>
+      </div>
+      <p class="philo__cloture"><strong>Avec ce que vous avez déjà.</strong> Un téléphone Android, un numéro, un code secret à six chiffres comme dans les applications d'argent, et Orange Money ou Moov Money. Pas de carte bancaire, pas d'adresse email.</p>
+    </div>
+  </section>
+
+  <section class="section reveal" id="services">
+    <div class="conteneur">
+      <span class="section__surtitre">Ce que vous pouvez commander</span>
+      <h2 class="section__titre">Deux services aujourd'hui, d'autres bientôt.</h2>
+      <div class="services">
+        <article class="carte service">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></div>
+          <h3>Livraison de colis</h3>
+          <p class="carte__texte">Point de retrait, point de livraison, taille du colis. Vous suivez la course en temps réel et payez par portefeuille ou en espèces à la remise.</p>
+        </article>
+        <article class="carte service">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z"/><path d="M5 17l.8 2 2 .8-2 .8L5 22l-.8-1.4-2-.8 2-.8z"/></svg></div>
+          <h3>Ménage à prix fixe</h3>
+          <p class="carte__texte">Studio, appartement, grand ménage ou bureau : un tarif du catalogue YILGA, connu avant de réserver. Un prestataire vérifié intervient chez vous.</p>
+        </article>
+      </div>
+      <div class="bientot"><span class="bientot__libelle">Bientôt</span><span>Plomberie</span><span>Électricité</span><span>Coiffure</span><span>Chauffeur</span><span>Santé</span></div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="comment" style="background:var(--blanc)">
+    <div class="conteneur">
+      <span class="section__surtitre">Comment ça marche</span>
+      <h2 class="section__titre">Trois étapes, de chaque côté.</h2>
+      <div class="parcours">
+        <div class="parcours__colonne">
+          <h3>Vous commandez</h3>
+          <div class="etape"><b>1</b><p><strong>Créez votre compte</strong>Votre numéro, un code reçu par SMS, puis un code secret à six chiffres.</p></div>
+          <div class="etape"><b>2</b><p><strong>Commandez</strong>Une livraison ou un ménage, prix affiché avant de confirmer, en espèces ou depuis votre portefeuille.</p></div>
+          <div class="etape"><b>3</b><p><strong>Suivez, puis payez</strong>Vous voyez la course avancer et vous n'êtes débité qu'une fois la prestation faite.</p></div>
+          <a class="lien" href="guide-client.html">Voir le guide complet</a>
+        </div>
+        <div class="parcours__colonne">
+          <h3>Vous livrez ou nettoyez</h3>
+          <div class="etape"><b>1</b><p><strong>Déposez vos documents</strong>YILGA vérifie votre compte, puis vous recevez un bonus de départ.</p></div>
+          <div class="etape"><b>2</b><p><strong>Acceptez une course</strong>En ligne quand vous voulez, les demandes proches arrivent, deux appuis par course.</p></div>
+          <div class="etape"><b>3</b><p><strong>Retirez vos gains</strong>En espèces chez un agent YILGA, ou par versement Mobile Money chaque matin.</p></div>
+          <a class="lien" href="guide-prestataire.html">Voir le guide prestataire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section studio studio--sombre pro reveal" id="prestataires">
+    <div class="conteneur pro__grille">
+      <div>
+        <span class="section__surtitre">Devenir prestataire</span>
+        <h2 class="section__titre">Yilga Pro, pour les livreurs et les agents de ménage.</h2>
+        <p class="section__intro">Une application à part, avec le même compte et le même code secret. Des courses près de vous, et vos gains quand vous les voulez.</p>
+        <div class="pro__args">
+          <div class="pro__arg"><div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><p><strong>Des courses près de chez vous</strong>Dans vos catégories, avec le mode de paiement affiché avant d'accepter.</p></div>
+          <div class="pro__arg"><div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 13V5a2 2 0 1 1 4 0v6"/><path d="M12 11V9a2 2 0 1 1 4 0v3"/><path d="M16 12a2 2 0 1 1 4 0v3a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3.4L3.5 15a2 2 0 0 1 3.4-2L8 14"/></svg></div><p><strong>Deux appuis par course</strong>« Colis récupéré » puis « Livré ». L'itinéraire s'ouvre dans votre application de cartes.</p></div>
+          <div class="pro__arg"><div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 15h2"/></svg></div><p><strong>Vos gains en temps réel</strong>Retrait en espèces chez un agent avec un code, ou versement Mobile Money automatique.</p></div>
+        </div>
+        <div class="pro__actions">
+          <a class="bouton" href="https://github.com/HamdanCoder/yilga/releases/latest/download/yilga-pro.apk">Télécharger Yilga Pro</a>
+          <a class="bouton bouton--sombre" href="guide-prestataire.html">Voir le guide prestataire</a>
+        </div>
+      </div>
+      <div class="pro__scene scene" aria-hidden="true">
+        <div class="phone tilt-l"><div class="screen"><img src="assets/img/captures/pro-accueil-540.webp" srcset="assets/img/captures/pro-accueil-540.webp 540w, assets/img/captures/pro-accueil-1080.webp 1080w" sizes="(min-width:1040px) 300px, 240px" width="540" height="1200" alt="Accueil de Yilga Pro avec une demande de livraison proche" loading="lazy"><i class="island"></i></div><b class="l1"></b><b class="l2"></b><b class="l3"></b><b class="r1"></b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="telecharger">
+    <div class="conteneur">
+      <span class="section__surtitre">Android</span>
+      <h2 class="section__titre">Téléchargez les applications</h2>
+      <p class="section__intro">Version d'essai installée directement depuis ce site. Les applications ne sont pas encore sur Google Play.</p>
+      <div class="telechargement" style="margin-top:32px">
+        <article class="carte carte-telechargement">
+          <span class="carte__etiquette">Pour les clients</span>
+          <h3>YILGA</h3>
+          <p class="carte__texte">Faites livrer un colis ou réservez un ménage à prix fixe, suivez votre commande et payez par Orange Money ou Moov Money.</p>
+          <a class="bouton" href="https://github.com/HamdanCoder/yilga/releases/latest/download/yilga-client.apk">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            Télécharger YILGA
+          </a>
+          <span class="meta">APK · 98 Mo · version du 22 octobre 2026</span>
+        </article>
+        <article class="carte carte--sombre carte-telechargement">
+          <span class="carte__etiquette">Pour les prestataires</span>
+          <h3>YILGA <em>Pro</em></h3>
+          <p class="carte__texte">Recevez des courses près de vous, acceptez en deux appuis et retirez vos gains sur Mobile Money.</p>
+          <a class="bouton" href="https://github.com/HamdanCoder/yilga/releases/latest/download/yilga-pro.apk">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            Télécharger Yilga Pro
+          </a>
+          <span class="meta">APK · 95 Mo · version du 22 octobre 2026</span>
+        </article>
+      </div>
+      <p class="note lecture" style="margin-top:20px">Comment installer un fichier APK : <a class="lien" href="telecharger.html">les quatre étapes</a>.</p>
+    </div>
+  </section>
 </main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied__haut">
+      <div>
+        <a class="marque" href="index.html"><img src="assets/img/logo.png" alt="" width="32" height="32">YILGA</a>
+        <p class="pied__tagline">Services à domicile · Ouagadougou. Livraison de colis et ménage à prix fixe, avec des prestataires vérifiés.</p>
+        <div class="pied__contact"></div>
+      </div>
+      <ul class="pied__liens">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#philosophie">Philosophie</a></li>
+        <li><a href="guide-client.html">Guide client</a></li>
+        <li><a href="guide-prestataire.html">Guide prestataire</a></li>
+        <li><a href="telecharger.html">Télécharger</a></li>
+      </ul>
+    </div>
+    <div class="pied__bas"><span>YILGA · Services à domicile</span><span>Android uniquement</span></div>
+  </div>
+</footer>
+<script src="assets/site.js"></script>
 </body>
 </html>

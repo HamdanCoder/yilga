@@ -160,3 +160,69 @@ h3{font-size:19px;letter-spacing:-.01em;line-height:1.3}
 .etapes li b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--orange-pale);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;margin-top:1px}
 .etapes li strong{color:var(--encre);font-weight:600}
 .note{margin-top:24px;background:var(--blanc);border:1px solid var(--bord);border-radius:14px;padding:16px 18px;font-size:15px;color:var(--gris)}
+
+/* Accueil : accroche */
+.hero{overflow:hidden;padding:48px 0 0}
+.hero__grille{display:grid;gap:32px}
+.hero__grille>*{min-width:0}
+@media (max-width:759px){.hero__scene{--phone-largeur:160px}}
+.hero__texte{max-width:620px}
+.hero h1 b{color:var(--orange);font-weight:800}
+.hero__sous{margin-top:20px;color:var(--gris);font-size:17px;max-width:46ch}
+.hero__actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:28px}
+.hero__scene{position:relative;height:calc(var(--phone-largeur)*2.05);margin:12px auto 0;width:calc(var(--phone-largeur)*1.9);max-width:100%}
+.hero__scene .phone{position:absolute}
+.hero__scene .p1{left:0;top:12%;z-index:2}
+.hero__scene .p2{right:0;top:0;filter:brightness(.97)}
+@media (min-width:760px){.hero{padding-top:72px}.hero__sous{font-size:19px}}
+@media (min-width:1040px){
+  .hero{padding-top:96px}
+  .hero__grille{grid-template-columns:1.05fr 1fr;align-items:center;gap:48px}
+  .hero__scene{margin:0 0 0 auto;height:calc(var(--phone-largeur)*2.2)}
+  .hero__scene .p1{left:0;top:14%}
+}
+
+/* Accueil : constats, piliers, services, parcours, prestataires */
+.constats{display:grid;gap:14px;margin-top:32px}
+.constat{padding:22px 24px;border-left:3px solid var(--orange);background:var(--blanc);border-radius:0 16px 16px 0}
+.constat h3{margin-bottom:6px}
+.constat p{color:var(--gris)}
+.piliers{display:grid;gap:16px;margin-top:36px}
+.pilier{display:flex;gap:18px;align-items:flex-start}
+.pilier h3{margin-bottom:6px}
+.pilier p{color:var(--gris)}
+.ico{width:48px;height:48px;flex:none;border-radius:14px;background:var(--orange-pale);color:var(--orange);display:flex;align-items:center;justify-content:center}
+.ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.philo__cloture{margin-top:36px;padding-top:28px;border-top:1px solid var(--bord);color:var(--gris);font-size:17px;max-width:62ch}
+.philo__cloture strong{color:var(--encre);font-weight:600}
+.services{display:grid;gap:16px;margin-top:36px}
+.service{display:flex;flex-direction:column;gap:10px}
+.service .ico{margin-bottom:6px}
+.bientot{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.bientot__libelle{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gris-clair);margin-right:6px}
+.bientot span:not(.bientot__libelle){font-size:14px;font-weight:600;color:var(--gris);background:var(--blanc);border:1px dashed var(--gris-clair);border-radius:999px;padding:7px 14px}
+.parcours{display:grid;gap:20px;margin-top:36px}
+.parcours__colonne h3{font-size:22px;margin-bottom:18px}
+.etape{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--bord)}
+.etape:last-of-type{border-bottom:1px solid var(--bord)}
+.etape b{flex:none;width:32px;height:32px;border-radius:50%;background:var(--orange);color:var(--blanc);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
+.etape p{color:var(--gris)}
+.etape p strong{display:block;color:var(--encre);font-weight:700;margin-bottom:2px}
+.parcours__colonne .lien{display:inline-block;margin-top:18px}
+.pro__grille{display:grid;gap:36px}
+.pro .section__surtitre{color:#FFB38A}
+.pro .section__intro{color:#CBD5E1}
+.pro__args{display:grid;gap:16px;margin-top:28px}
+.pro__arg{display:flex;gap:14px;align-items:flex-start;color:#CBD5E1}
+.pro__arg strong{display:block;color:var(--blanc);font-weight:700}
+.pro__arg .ico{background:rgba(255,68,0,.18);color:#FFB38A}
+.pro__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.pro__scene{width:var(--phone-largeur);margin:0 auto}
+@media (min-width:760px){
+  .constats{grid-template-columns:repeat(3,1fr)}
+  .piliers{grid-template-columns:1fr 1fr;gap:28px 32px}
+  .services{grid-template-columns:1fr 1fr;gap:20px}
+  .parcours{grid-template-columns:1fr 1fr;gap:40px}
+  .pro__grille{grid-template-columns:1.2fr .8fr;align-items:center}
+  .pro__scene{margin:0 0 0 auto}
+}

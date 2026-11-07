@@ -205,6 +205,69 @@ def verifier_page(nom, html, p, options):
     return e
 
 
+def section(html, ident):
+    m = re.search(r'<section[^>]*\bid="%s"[^>]*>(.*?)</section>' % re.escape(ident), html, re.S)
+    return m.group(1) if m else None
+
+
+def verifier_accueil(html, p):
+    e = []
+    for ident in ("haut", "philosophie", "services", "comment", "prestataires", "telecharger"):
+        if ident not in p.ids:
+            e.append(("accueil", f"id #{ident} absent"))
+    if len(re.findall(r"<h1\b", html)) != 1:
+        e.append(("accueil", "il faut exactement un h1"))
+    scene = re.search(r'<div[^>]*class="[^"]*\bscene\b[^"]*"[^>]*>(.*?)</div>\s*</div>', html, re.S)
+    if len(re.findall(r'class="[^"]*\bphone\b', scene.group(1) if scene else "")) < 2:
+        e.append(("accueil", "moins de deux .phone dans .scene"))
+    services = section(html, "services") or ""
+    for libelle in ("Plomberie", "Électricité", "Coiffure", "Chauffeur", "Santé"):
+        if libelle not in services:
+            e.append(("accueil", f"« {libelle} » absent de #services"))
+        if html.count(libelle) != services.count(libelle):
+            e.append(("accueil", f"« {libelle} » présent hors de #services"))
+    if "bientot" not in services:
+        e.append(("accueil", "aucun élément .bientot dans #services"))
+    if services.count("Bientôt") and not re.search(r'class="[^"]*\bbientot\b[^"]*"[^>]*>[^<]*Bientôt|bientot[^>]*>(?:(?!</).)*Bientôt', services, re.S):
+        e.append(("accueil", "« Bientôt » hors d'un élément .bientot"))
+    for apk in ("yilga-client.apk", "yilga-pro.apk"):
+        if not any(h.endswith(apk) for h in p.hrefs):
+            e.append(("accueil", f"lien {apk} absent"))
+    haut = section(html, "haut") or ""
+    for img in re.findall(r"<img\b[^>]*>", haut):
+        if 'loading="lazy"' in img:
+            e.append(("accueil", "image de l'accroche en loading=lazy"))
+    reste = html.replace(haut, "")
+    for img in re.findall(r"<img\b[^>]*>", reste):
+        if 'loading="lazy"' not in img and 'class="marque' not in img and "logo.png" not in img:
+            e.append(("accueil", f"image sans loading=lazy : {img[:60]}"))
+    return e
+
+
+def verifier_poids(html, p):
+    total = 0
+    vus = set()
+    for ref in p.srcs:
+        if ref.startswith(("http", "data:")):
+            continue
+        vus.add(ref.split("#")[0])
+    # pour chaque srcset, ne compter que la plus petite source
+    for m in re.finditer(r'srcset="([^"]+)"', html):
+        parts = [x.strip().split() for x in m.group(1).split(",")]
+        if len(parts) > 1:
+            tailles = sorted(parts, key=lambda q: int(q[1][:-1]) if len(q) > 1 and q[1][:-1].isdigit() else 0)
+            for q in tailles[1:]:
+                vus.discard(q[0])
+    for ref in vus:
+        chemin = os.path.join(RACINE, ref)
+        if os.path.exists(chemin):
+            total += os.path.getsize(chemin)
+    total += len(html.encode())
+    if total > 1_500_000:
+        return [("poids", f"{total//1000} Ko référencés par index.html (max 1 500)")]
+    return []
+
+
 def verifier_css():
     e = []
     chemin = os.path.join(RACINE, "assets", "site.css")
@@ -243,7 +306,10 @@ def main(argv):
         if nom == "index.html" and not p.nav_entete and not options["tout"]:
             continue  # ancienne page de téléchargement, remplacée à la tâche 3
         pages += 1
-        for regle, detail in verifier_page(nom, html, p, options):
+        echecs_page = verifier_page(nom, html, p, options)
+        if nom == "index.html":
+            echecs_page += verifier_accueil(html, p) + verifier_poids(html, p)
+        for regle, detail in echecs_page:
             print(f"{nom}: {regle}: {detail}")
             echecs += 1
     for regle, detail in verifier_css():
