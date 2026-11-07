@@ -16,10 +16,11 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_URL = "https://hamdancoder.github.io/yilga/"
 PAGES_NAV = ["index.html", "guide-client.html", "guide-prestataire.html", "telecharger.html"]
 CAPTURES = ["client-code-secret", "client-telephone", "client-accueil", "client-recharge", "client-ussd",
-            "client-commande", "client-menage", "client-carte", "client-suivi", "client-recu", "client-portefeuille",
+            "client-commande", "client-menage", "client-carte", "client-suivi", "client-suivi-course", "client-recu", "client-portefeuille",
             "pro-documents", "pro-activation", "pro-accueil", "pro-demande", "pro-course", "pro-portefeuille",
             "pro-retrait", "pro-retrait-agent", "pro-statistiques"]
-INTERDITS = ["yilga-apk", "à compléter", "30 minutes", "todo", "lorem", "download", "http://"]
+INTERDITS = ["yilga-apk", "à compléter", "30 minutes", "todo", "lorem", "download", "http://",
+             "acceptez en deux appuis"]  # l'acceptation se fait en un appui, c'est la course qui en prend deux
 
 
 class Page(HTMLParser):
@@ -261,6 +262,10 @@ def verifier_guide(nom, html, p):
     liens = re.findall(r'href="#([^"]+)"', sommaire.group(1)) if sommaire else []
     if sorted(liens) != sorted(i for i, _ in etapes) or len(liens) != 6:
         e.append(("guide", "nav.guide__sommaire doit lier les six étapes"))
+    if nom == "guide-client.html":
+        suivi = next((corps for ident, corps in etapes if ident == "suivi"), "")
+        if "captures/client-suivi-course-" not in suivi:
+            e.append(("guide", "l'étape #suivi doit montrer l'écran de suivi d'une course en cours (client-suivi-course)"))
     autre = "guide-prestataire.html" if nom == "guide-client.html" else "guide-client.html"
     if autre not in p.hrefs:
         e.append(("guide", f"lien vers {autre} absent"))
@@ -309,9 +314,12 @@ def verifier_images_site():
     if not os.path.exists(os.path.join(RACINE, "404.html")):
         e.append(("finitions", "404.html absent"))
     else:
-        q = analyser(lire(os.path.join(RACINE, "404.html")))
+        html404 = lire(os.path.join(RACINE, "404.html"))
+        q = analyser(html404)
         if not q.nav_entete or "index.html" not in q.hrefs:
             e.append(("finitions", "404.html doit porter l'en-tête et un lien vers index.html"))
+        if '<base href="/yilga/">' not in html404:
+            e.append(("finitions", "404.html doit porter <base href=\"/yilga/\"> (servie à n'importe quel chemin)"))
     return e
 
 
