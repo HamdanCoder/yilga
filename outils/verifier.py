@@ -244,6 +244,31 @@ def verifier_accueil(html, p):
     return e
 
 
+def verifier_guide(nom, html, p):
+    e = []
+    etapes = re.findall(r'<section[^>]*class="[^"]*\bguide__etape\b[^"]*"[^>]*id="([^"]+)"[^>]*>(.*?)</section>', html, re.S)
+    if len(etapes) != 6:
+        e.append(("guide", f"{len(etapes)} section.guide__etape (attendu 6)"))
+    for ident, corps in etapes:
+        if not re.search(r"<h2\b", corps):
+            e.append(("guide", f"étape #{ident} sans h2"))
+        if not re.search(r"<p\b", corps):
+            e.append(("guide", f"étape #{ident} sans p"))
+        m = re.search(r'<img\b[^>]*src="assets/img/captures/([a-z-]+)-\d+\.webp"', corps)
+        if not m or m.group(1) not in CAPTURES:
+            e.append(("guide", f"étape #{ident} sans capture du contrat"))
+    sommaire = re.search(r'<nav[^>]*class="[^"]*\bguide__sommaire\b[^"]*"[^>]*>(.*?)</nav>', html, re.S)
+    liens = re.findall(r'href="#([^"]+)"', sommaire.group(1)) if sommaire else []
+    if sorted(liens) != sorted(i for i, _ in etapes) or len(liens) != 6:
+        e.append(("guide", "nav.guide__sommaire doit lier les six étapes"))
+    autre = "guide-prestataire.html" if nom == "guide-client.html" else "guide-client.html"
+    if autre not in p.hrefs:
+        e.append(("guide", f"lien vers {autre} absent"))
+    if "telecharger.html" not in p.hrefs:
+        e.append(("guide", "lien vers telecharger.html absent"))
+    return e
+
+
 def verifier_poids(html, p):
     total = 0
     vus = set()
@@ -309,6 +334,8 @@ def main(argv):
         echecs_page = verifier_page(nom, html, p, options)
         if nom == "index.html":
             echecs_page += verifier_accueil(html, p) + verifier_poids(html, p)
+        if nom.startswith("guide-"):
+            echecs_page += verifier_guide(nom, html, p)
         for regle, detail in echecs_page:
             print(f"{nom}: {regle}: {detail}")
             echecs += 1
